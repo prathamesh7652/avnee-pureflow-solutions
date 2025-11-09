@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { ContactForm } from "@/components/ContactForm";
 
 const Contact = () => {
   const [cardsRef, cardsInView] = useInView({
@@ -280,9 +279,6 @@ const Contact = () => {
           </div>
         </div>
       </section>
-
-      {/* Contact Form Section */}
-      <ContactForm />
     </div>
   );
 };
