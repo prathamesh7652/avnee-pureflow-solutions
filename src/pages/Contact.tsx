@@ -134,146 +134,148 @@ const Contact = () => {
             </motion.div>
           </div>
 
-          {/* Map and Info Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12" ref={mapRef}>
-            {/* Map */}
-            <motion.div
-              className="h-[500px] lg:h-[500px] rounded-lg gap-5 overflow-hidden shadow-elegant"
-              initial={{ opacity: 0, x: -50 }}
-              animate={
-                mapInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }
-              }
+          {/* Office Locations Section */}
+          <div ref={mapRef}>
+            <motion.h2
+              className="text-3xl font-bold text-center text-primary mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={mapInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6 }}
-              whileHover={{ scale: 1.02 }}
             >
-              <div className="flex flex-col gap-10 ">
-                {/* Samarth Nagar Location */}
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d473.06466810772224!2d73.821396!3d18.460211!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2950011926065%3A0xafd9cddbac4822d2!2sSamarth%20Complex%2C%20Samarth%20Nagar!5e0!3m2!1sen!2sin!4v1762696899299!5m2!1sen!2sin"
-                  width="100%"
-                  height="350"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Samarth Nagar Location"
-                ></iframe>
+              Our Locations
+            </motion.h2>
 
-                {/* Dehu Location */}
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30229.79509988964!2d73.74710047183277!3d18.721153524325608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b6c3af4f82b1%3A0x7e479fb79ab16b71!2sDehu%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1762696777664!5m2!1sen!2sin"
-                  width="100%"
-                  height="350"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Dehu Location"
-                ></iframe>
-              </div>
-            </motion.div>
-
-            {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={mapInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <motion.h2
-                className="text-3xl font-bold text-primary mb-6"
-                initial={{ opacity: 0 }}
-                animate={mapInView ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+            <div className="space-y-8">
+              {/* Head Office */}
+              <motion.div
+                className="bg-card border border-border rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                animate={mapInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
               >
-                Visit Our Office
-              </motion.h2>
-              <motion.p
-                className="text-muted-foreground mb-6 leading-relaxed"
-                initial={{ opacity: 0 }}
-                animate={mapInView ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                Our office is conveniently located in Pune, the industrial hub
-                of Maharashtra. We welcome clients to visit us for in-person
-                consultations and facility tours.
-              </motion.p>
-
-              <div className="space-y-4 mb-8">
-                {[
-                  {
-                    icon: MapPin,
-                    title: "Head Office",
-                    content:
-                      "Shop No. 09, Samarth Complex, Samarth Nagar, Nr SBI Bank, Pune, Maharashtra, India - 411041",
-                  },
-                  {
-                    icon: MapPin,
-                    title: "Branch Office",
-                    content:
-                      "Shop No. 112, Divine Dynasty, Dehu-Malwadi Road, Parandwal Chowk, Dehugoan, Pune, Maharashtra, India - 412109",
-                  },
-                  {
-                    icon: Phone,
-                    title: "Contact Numbers",
-                    content: [
-                      "Sales: +91 9730088522",
-                      "Support: +91 9822014063",
-                    ],
-                  },
-                  {
-                    icon: Mail,
-                    title: "Email Addresses",
-                    content: [
-                      "General: avneeenvirotech@gmail.com",
-                      "Technical: sales@aeiplpune.com",
-                    ],
-                  },
-                  {
-                    icon: Clock,
-                    title: "Business Hours",
-                    content: [
-                      "Monday - Friday: 9:00 AM - 6:00 PM",
-                      "Saturday: 9:00 AM - 2:00 PM",
-                      "Sunday: Closed",
-                    ],
-                  },
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex items-start space-x-3 group"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={
-                      mapInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
-                    }
-                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                    whileHover={{ x: 5 }}
-                  >
-                    <motion.div
-                      whileHover={{ scale: 1.2, rotate: 360 }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <item.icon className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    </motion.div>
-                    <div>
-                      <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
-                        {item.title}
-                      </h3>
-                      {Array.isArray(item.content) ? (
-                        item.content.map((line, i) => (
-                          <p key={i} className="text-muted-foreground text-sm">
-                            {line}
-                          </p>
-                        ))
-                      ) : (
-                        <p className="text-muted-foreground text-sm">
-                          {item.content}
-                        </p>
-                      )}
+                <div className="grid lg:grid-cols-2 gap-0">
+                  {/* Info Section */}
+                  <div className="p-8 lg:p-10 flex flex-col justify-center bg-gradient-to-br from-primary/5 via-primary/3 to-transparent">
+                    <div className="inline-flex items-center gap-2 mb-4">
+                      <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
+                        HEAD OFFICE
+                      </div>
                     </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+                    <h3 className="text-2xl font-bold text-foreground mb-4">
+                      Samarth Complex, Pune
+                    </h3>
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                        <p className="text-muted-foreground leading-relaxed">
+                          Shop No. 09, Samarth Complex, Samarth Nagar, Nr SBI Bank, Pune, Maharashtra, India - 411041
+                        </p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Phone className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                        <div>
+                          <p className="text-foreground font-medium">+91 9730088522</p>
+                          <p className="text-sm text-muted-foreground">Sales & General Inquiries</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Mail className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                        <div>
+                          <p className="text-foreground font-medium">avneeenvirotech@gmail.com</p>
+                          <p className="text-sm text-muted-foreground">General Communications</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Clock className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                        <div>
+                          <p className="text-foreground font-medium">Mon - Fri: 9:00 AM - 6:00 PM</p>
+                          <p className="text-sm text-muted-foreground">Sat: 9:00 AM - 2:00 PM | Sun: Closed</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Map Section */}
+                  <div className="h-[400px] lg:h-full relative group">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d473.06466810772224!2d73.821396!3d18.460211!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2950011926065%3A0xafd9cddbac4822d2!2sSamarth%20Complex%2C%20Samarth%20Nagar!5e0!3m2!1sen!2sin!4v1762696899299!5m2!1sen!2sin"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Head Office - Samarth Nagar Location"
+                      className="grayscale-0 group-hover:grayscale-0 transition-all duration-300"
+                    ></iframe>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Branch Office */}
+              <motion.div
+                className="bg-card border border-border rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                animate={mapInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <div className="grid lg:grid-cols-2 gap-0">
+                  {/* Map Section - On Left for variety */}
+                  <div className="h-[400px] lg:h-full relative group order-2 lg:order-1">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30229.79509988964!2d73.74710047183277!3d18.721153524325608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b6c3af4f82b1%3A0x7e479fb79ab16b71!2sDehu%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1762696777664!5m2!1sen!2sin"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Branch Office - Dehu Location"
+                      className="grayscale-0 group-hover:grayscale-0 transition-all duration-300"
+                    ></iframe>
+                  </div>
+                  {/* Info Section */}
+                  <div className="p-8 lg:p-10 flex flex-col justify-center bg-gradient-to-bl from-primary/5 via-primary/3 to-transparent order-1 lg:order-2">
+                    <div className="inline-flex items-center gap-2 mb-4">
+                      <div className="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-xs font-semibold">
+                        BRANCH OFFICE
+                      </div>
+                    </div>
+                    <h3 className="text-2xl font-bold text-foreground mb-4">
+                      Divine Dynasty, Dehu
+                    </h3>
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                        <p className="text-muted-foreground leading-relaxed">
+                          Shop No. 112, Divine Dynasty, Dehu-Malwadi Road, Parandwal Chowk, Dehugoan, Pune, Maharashtra, India - 412109
+                        </p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Phone className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                        <div>
+                          <p className="text-foreground font-medium">+91 9822014063</p>
+                          <p className="text-sm text-muted-foreground">Support & Service</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Mail className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                        <div>
+                          <p className="text-foreground font-medium">sales@aeiplpune.com</p>
+                          <p className="text-sm text-muted-foreground">Technical Support</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Clock className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                        <div>
+                          <p className="text-foreground font-medium">Mon - Fri: 9:00 AM - 6:00 PM</p>
+                          <p className="text-sm text-muted-foreground">Sat: 9:00 AM - 2:00 PM | Sun: Closed</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
