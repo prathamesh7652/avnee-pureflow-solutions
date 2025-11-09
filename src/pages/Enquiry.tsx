@@ -46,13 +46,14 @@ const Enquiry = () => {
         body: JSON.stringify(data),
       });
 
-      // Try to parse JSON response but fall back to text when server returns HTML (e.g., 404 page)
+      // Read response as text first to avoid "body stream already read" error
+      const text = await response.text();
       let result: any = null;
+      
       try {
-        result = await response.json();
+        result = JSON.parse(text);
       } catch (parseError) {
-        // response wasn't JSON (likely HTML 404 page). Capture text for error display.
-        const text = await response.text();
+        // Response wasn't JSON (likely HTML 404 page)
         result = { message: text };
       }
 
