@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Droplet } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import logo from "@/assets/logo.jpg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,10 +28,12 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Link to="/" className="flex items-center space-x-2 group">
-              <div className="bg-primary p-2 rounded-lg group-hover:bg-accent transition-smooth">
-                {/* <Droplet className="h-6 w-6 text-primary-foreground" /> */}
-              </div>
+            <Link to="/" className="flex items-center space-x-3 group">
+              <img 
+                src={logo} 
+                alt="Avnee Envirotech Logo" 
+                className="h-10 w-auto rounded-lg group-hover:scale-105 transition-smooth"
+              />
               <span className="text-xl font-bold text-[#408944]">
                 Avnee Envirotech
               </span>
