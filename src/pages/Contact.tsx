@@ -25,19 +25,16 @@ const Contact = () => {
       name: "Amit Naregalkar",
       designation: "Director",
       phone: "9730088522",
-      initials: "AN",
     },
     {
       name: "Dnyaneshwar Tatte",
       designation: "Project Manager",
       phone: "9922447199",
-      initials: "DT",
     },
     {
       name: "Ravindra Patil",
-      designation: "HR Manager",
+      designation: "HR",
       phone: "9764864324",
-      initials: "RP",
     },
   ];
 
@@ -73,38 +70,67 @@ const Contact = () => {
               </motion.div>
 
               {/* Team Cards Grid */}
-              <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
-                initial="hidden"
-                animate={cardsInView ? "visible" : "hidden"}
-                variants={{
-                  hidden: {},
-                  visible: {
-                    transition: {
-                      staggerChildren: 0.15, // smooth stagger effect
-                    },
-                  },
-                }}
-              >
-                {teamMembers.map((member, index) => (
-                  <motion.div
-                    key={index}
-                    variants={{
-                      hidden: { opacity: 0, y: 40 },
-                      visible: { opacity: 1, y: 0 },
-                    }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    whileHover={{ scale: 1.05, y: -5 }}
-                  >
-                    <TeamMemberCard
-                      name={member.name}
-                      designation={member.designation}
-                      phone={member.phone}
-                      initials={member.initials}
-                    />
-                  </motion.div>
-                ))}
-              </motion.div>
+              <div className="flex flex-col lg:flex-row items-center justify-center gap-8 max-w-6xl mx-auto">
+                {/* Left Card - Project Manager */}
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, x: -40 },
+                    visible: { opacity: 1, x: 0 },
+                  }}
+                  initial="hidden"
+                  animate={cardsInView ? "visible" : "hidden"}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="w-full lg:w-auto"
+                >
+                  <TeamMemberCard
+                    name={teamMembers[1].name}
+                    designation={teamMembers[1].designation}
+                    phone={teamMembers[1].phone}
+                    isDirector={false}
+                  />
+                </motion.div>
+
+                {/* Center Card - Director (Fancy) */}
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, scale: 0.8 },
+                    visible: { opacity: 1, scale: 1 },
+                  }}
+                  initial="hidden"
+                  animate={cardsInView ? "visible" : "hidden"}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  whileHover={{ scale: 1.08, y: -8 }}
+                  className="w-full lg:w-auto"
+                >
+                  <TeamMemberCard
+                    name={teamMembers[0].name}
+                    designation={teamMembers[0].designation}
+                    phone={teamMembers[0].phone}
+                    isDirector={true}
+                  />
+                </motion.div>
+
+                {/* Right Card - HR Manager */}
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, x: 40 },
+                    visible: { opacity: 1, x: 0 },
+                  }}
+                  initial="hidden"
+                  animate={cardsInView ? "visible" : "hidden"}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="w-full lg:w-auto"
+                >
+                  <TeamMemberCard
+                    name={teamMembers[2].name}
+                    designation={teamMembers[2].designation}
+                    phone={teamMembers[2].phone}
+                    isDirector={false}
+                  />
+                </motion.div>
+              </div>
             </motion.div>
           </div>
 
@@ -259,21 +285,45 @@ function TeamMemberCard({
   name,
   designation,
   phone,
-  initials,
+  isDirector,
 }: {
   name: string;
   designation: string;
   phone: string;
-  initials: string;
+  isDirector: boolean;
 }) {
-  return (
-    <div className="bg-white shadow-md rounded-xl p-6 text-center hover:shadow-lg transition">
-      <div className="w-16 h-16 mx-auto bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">
-        {initials}
+  if (isDirector) {
+    return (
+      <div className="bg-gradient-to-br from-primary via-primary/90 to-primary/80 shadow-elegant rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300 border-2 border-primary/20 w-full lg:w-80">
+        <div className="relative mb-6">
+          <div className="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center overflow-hidden shadow-lg ring-4 ring-white/30">
+            <div className="w-full h-full bg-gradient-to-br from-background to-muted flex items-center justify-center text-4xl font-bold text-primary">
+              Photo
+            </div>
+          </div>
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white px-4 py-1 rounded-full shadow-md">
+            <span className="text-xs font-semibold text-primary">Director</span>
+          </div>
+        </div>
+        <h3 className="text-2xl font-bold text-white mb-2">{name}</h3>
+        <p className="text-white/90 text-sm font-medium mb-3">{designation}</p>
+        <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 inline-block">
+          <p className="text-white font-semibold">{phone}</p>
+        </div>
       </div>
-      <h3 className="text-lg font-semibold">{name}</h3>
-      <p className="text-sm text-gray-500 mb-2">{designation}</p>
-      <p className="text-sm text-gray-600">{phone}</p>
+    );
+  }
+
+  return (
+    <div className="bg-card shadow-md rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-border w-full lg:w-64">
+      <div className="w-24 h-24 mx-auto bg-muted rounded-full flex items-center justify-center overflow-hidden mb-4 border-2 border-border">
+        <div className="w-full h-full bg-gradient-to-br from-muted to-muted-foreground/20 flex items-center justify-center text-sm font-medium text-muted-foreground">
+          Photo
+        </div>
+      </div>
+      <h3 className="text-lg font-semibold text-foreground mb-1">{name}</h3>
+      <p className="text-sm text-muted-foreground mb-2">{designation}</p>
+      <p className="text-sm text-foreground font-medium">{phone}</p>
     </div>
   );
 }
